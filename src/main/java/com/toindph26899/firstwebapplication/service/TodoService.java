@@ -10,9 +10,10 @@ import java.util.List;
 @Service
 public class TodoService {
 
-    private static List<Todo> todos = new ArrayList<>();
+    public List<Todo> findByUsername() {
 
-    static {
+        List<Todo> todos = new ArrayList<>();
+
         todos.add(new Todo(1, "toindph26899", "Spring framework 6",
                 LocalDate.now().plusYears(1), false));
 
@@ -21,10 +22,26 @@ public class TodoService {
 
         todos.add(new Todo(3, "toindph26899", "Learn fullstack",
                 LocalDate.now().plusYears(3), true));
+
+        return todos;
     }
 
-    public List<Todo> findByUsername(String name) {
-        return todos;
+    public void addToDo(Todo todo, List<Todo> getAll) {
+        getAll.add(todo);
+    }
+
+    public void update(int id, Todo todo, List<Todo> getAll) {
+        getAll.set(id, todo);
+    }
+
+    public void delete(int id, List<Todo> getAll) {
+        getAll.remove(id);
+    }
+
+    public Todo getOne(int id, List<Todo> getAll) {
+        Todo todo = new Todo();
+        todo = getAll.get(id);
+        return todo;
     }
 
 }
